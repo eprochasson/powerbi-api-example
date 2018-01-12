@@ -7,6 +7,7 @@ This repository present a guide and some example code in Python to connect to Po
 ## Pre-requisite
 
 You'll need:
+
 - an Organizational Active Directory, and a global admin on it
 - a PowerBI Pro Licence (you can get one for free, for trial)
 - a user in your AD that is also logged in to Power BI
@@ -23,8 +24,7 @@ Login to PowerBI with the user you want to own the workspace. It doesn't have to
 
 Create a new Workspace. The name doesn't matter. In that workspace, create a dashboard or a report.
 
-Click on any report/dashboard, note the URL should be something like `https://app.powerbi.com/groups/{group_id}/reports/{report_id}/ReportSection`. Remember the group_id for testing purpose.
-
+Click on any report/dashboard, note the URL should be something like `https://app.powerbi.com/groups/{group_id}/reports/{report_id}/ReportSection`. Remember the group_id for testing purpose. Make sure you "publish your app", which is effectively publishing your dashboard.
 
 ## Talking with the API
 
@@ -37,6 +37,7 @@ First thing first, you need to generate an access token, that will be used to au
 Endpoint: https://login.microsoftonline.com/common/oauth2/token
 Method: POST
 Data:
+
 - grant_type: password
 - scope: openid
 - resource: https://analysis.windows.net/powerbi/api
@@ -71,6 +72,7 @@ Save the value `access_token` from the previous call, you'll need it here.
 Endpoint: https://api.powerbi.com/v1.0/myorg/groups (for example, to get the list of groups)
 Method: GET
 Headers:
+
 - Authorization: Bearer <token you saved before>
 - Content-Type: application/json; charset=utf-8
 
@@ -81,6 +83,7 @@ Another example:
 ENDPOINT: https://api.powerbi.com/v1.0/myorg/groups/{group_id}/reports replace group_id with the value saved earlier. Gets the list of reports available in a workspace.
 Method: GET
 Headers:
+
 - Authorization: Bearer <token you saved before>
 - Content-Type: application/json; charset=utf-8
 
@@ -95,6 +98,7 @@ Endpoint: https://api.powerbi.com/v1.0/myorg/groups/{group_id}/reports/{report_i
 Method: POST
 Data: null
 Headers:
+
 - Authorization: Bearer <token you saved before>
 - Content-Type: application/json; charset=utf-8
 
@@ -153,6 +157,7 @@ We can use the template provided at https://docs.microsoft.com/en-us/power-bi/de
 ```
 
 Replace the values:
+
 - `EMBEDDED_TOKEN` with the token we just generated (NOT the access token)
 - `EMBEDDED_URL`: an URL specific to your report. You can obtain it using the endpoint https://api.powerbi.com/v1.0/myorg/groups/{group_id}/reports
 - `REPORT_ID` the id of your report.

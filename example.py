@@ -47,8 +47,6 @@ def get_embed_token_report(application_id, application_secret, user_id, user_pas
     endpoint = "https://api.powerbi.com/v1.0/myorg/groups/{}/reports/{}/GenerateToken".format(group_id, report_id)
     headers = make_headers(application_id, application_secret, user_id, user_password)
     res = requests.post(endpoint, headers=headers, json={"accessLevel": "View"})
-    return res
-    print(res.json())
     return res.json()['token']
 
 
